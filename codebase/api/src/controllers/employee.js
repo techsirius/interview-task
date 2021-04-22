@@ -85,18 +85,24 @@ module.exports = {
     async delete(req, res) {
 
         try {
-            const obj = await Employee(sequelize, DataTypes).findByPk(req.body.id);
 
-            if (obj) {
+            if (req.body.id != undefined) {
+                const obj = await Employee(sequelize, DataTypes).findByPk(req.body.id);
 
-                await obj.destroy();
+                if (obj) {
 
-                res.status(201).send(obj)
+                    await obj.destroy();
+                    res.status(201).send(obj);
 
+                } else {
+
+                    res.status(404).send("ID Not Found");
+
+                }
             } else {
 
-                res.status(404).send("ID Not Found")
-
+                deleteRow(req.body.ids);
+                res.status(201).send('success');
             }
 
         } catch (e) {
@@ -107,4 +113,20 @@ module.exports = {
         }
     }
 
+}
+
+async function deleteRow(ids) {
+
+    for (let i in ids) {
+        const element = ids[i];
+
+        const obj = await Employee(sequelize, DataTypes).findByPk(element);
+
+        if (obj) {
+
+            await obj.destroy();
+
+        }
+
+    }
 }
