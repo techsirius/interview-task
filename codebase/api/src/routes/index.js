@@ -10,6 +10,9 @@ module.exports = (app) => {
     // })
 
     app.get('/employee/list', employee.list);
+    app.post('/employee/create', employee.create);
+    // app.put('/employee/update', employee.update);
+    app.delete('/employee/delete', employee.delete);
 
     // app.get('/lab/test', labController.test);
 

@@ -1,4 +1,4 @@
-// const { DateTime } = require("luxon");
+const { DateTime } = require("luxon");
 const { DataTypes } = require('sequelize');
 
 const sequelize = require('../database/connection');
@@ -25,34 +25,45 @@ module.exports = {
 
     },
 
-    // async create(req,res) {
-    //     try {
-    //         const userCollection = await User
-    //         .create({
-    //             email : req.body.email,
-    //         });
+    async create(req, res) {
+        try {
+            let now = DateTime.now();
 
-    //         res.status(201).send(userCollection);
-    //     }
-    //     catch(e){
-    //         console.log(e);
-    //         res.status(400).send(e);
-    //     }
+            let data = {
+                name: req.body.name,
+                designation: req.body.designation,
+                joining_date: now.toFormat("yyyy-LL-dd HH:mm:ss"),
+                created_at: now.toFormat("yyyy-LL-dd HH:mm:ss"),
+            };
 
-    // },
+            const employeeCollection = await Employee(sequelize, DataTypes)
+                .create(data);
+
+            res.status(201).send(employeeCollection);
+        } catch (e) {
+            console.log(e);
+            res.status(400).send(e);
+        }
+
+    },
 
     async update(req, res) {
 
         try {
-            const obj = await WebRankInterface(sequelize).findByPk(req.body.wri_id);
+            const obj = await Employee(sequelize, DataTypes).findByPk(req.body.id);
 
             if (obj) {
 
                 let now = DateTime.now();
 
-                obj.update({
-                    keyword: `ro service done ${now}`
-                });
+                let data = {
+                    name: req.body.name,
+                    designation: req.body.designation,
+                    joining_date: now.toFormat("yyyy-LL-dd HH:mm:ss"),
+                    updated_at: now.toFormat("yyyy-LL-dd HH:mm:ss"),
+                };
+
+                await obj.update(data);
 
                 res.status(201).send(obj)
 
@@ -71,66 +82,29 @@ module.exports = {
         }
     },
 
-    async scrapPage(req, res) {
+    async delete(req, res) {
 
         try {
-            let website_id = req.query.website_id;
-            let token = md5(`${website_id}_${ DateTime.now().toFormat( 'x' )}`);
-            let website = await Website(sequelize, DataTypes)
-                .findByPk(website_id);
+            const obj = await Employee(sequelize, DataTypes).findByPk(req.body.id);
 
-            const list = await WebRankInterface(sequelize).findAll({
-                where: {
-                    website_id,
-                    token: '-1',
-                    status: 'new',
-                },
-                limit: 1
-            });
+            if (obj) {
 
-            if (list) {
-                // list.forEach((value, key) => {
+                await obj.destroy();
 
-                for (const key in list) {
-                    if (Object.hasOwnProperty.call(list, key)) {
-                        const element = list[key];
+                res.status(201).send(obj)
 
-                        scraper.scrapPage({
-                            query: element.keyword,
-                            location: element.location,
-                            uule: element.uule,
-                            id: element.id,
-                            // created_at  :  element.created_at
-                            token,
-                            num: website.result_count
-                        }).then((data) => {
-                            console.log(data)
-                        })
-
-                        let i = Math.floor(Math.random() * 10) + 10
-
-                        await delay(i * 1000);
-
-                    }
-                }
-
-                // });
             } else {
-                console.log('No data found')
+
+                res.status(404).send("ID Not Found")
+
             }
-
-            let msg = 'web scraping has been finished';
-
-            res.status(200).send(msg)
-
-            console.log(msg)
 
         } catch (e) {
 
             console.log(e);
-
             res.status(500).send(e);
 
         }
     }
+
 }
