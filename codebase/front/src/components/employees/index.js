@@ -1,5 +1,5 @@
 import React from 'react';
-import { employee_list, deleteEmployee } from '../../services/common';
+import { employee_list, deleteEmployee, deleteMultiEmployee } from '../../services/common';
 
 import Loader from '../Loader';
 
@@ -9,7 +9,8 @@ class EmployeeList extends React.Component {
 
         this.state = {
             employee_list: [],
-            loader: false
+            loader: false,
+            employee_ids: []
         };
     }
 
@@ -48,12 +49,54 @@ class EmployeeList extends React.Component {
         });
     }
 
+    deleteSelected = ()=>{
+
+        if(window.confirm('Are you sure you want to remove selected employees?')){
+            this.tongleLoader(true);
+
+            deleteMultiEmployee(this.state.employee_ids).then((res) => {
+                
+                setTimeout(()=>{
+                    this.getEmployeeList();
+                    this.tongleLoader(false)
+
+                    let oldState = [...this.state.employee_ids];
+                    oldState    =   [];
+                    this.setState(currentState => ({employee_ids: oldState}), () => {});
+
+                }, 2000);
+
+            });
+        }
+
+    }
+
+    selectId = (e, id) => {
+
+        let oldState = [...this.state.employee_ids];
+
+        if(e.target.checked){
+            oldState.push(id);
+        }else{
+            let index = oldState.indexOf(id);
+            oldState.splice(index, 1);
+        }
+
+        this.setState(currentState => ({employee_ids: oldState}), () => {
+            // console.log(this.state.employee_ids)
+        });
+
+    }
+
     employeeView = () => {
         let html = [];
 
         html = this.state.employee_list.map((a, key) => {
             return (
                 <tr key = { `${key}` }>
+                    <td>
+                        <input type="checkbox" onClick={(e)=>this.selectId(e, a.id)} />
+                    </td>
                     <td> { a.id } </td>
                     <td> { a.first_name } </td>
                     <td> { a.last_name } </td>
@@ -82,6 +125,9 @@ class EmployeeList extends React.Component {
                       <th colSpan="5">Employee List</th>
                     </tr>
                     <tr>
+                      <th>
+                        <a onClick={()=>this.deleteSelected()} href={`#`}>Delete</a>
+                      </th>
                       <th>#</th>
                       <th>First Name</th>
                       <th>Last Name</th>

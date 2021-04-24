@@ -37,6 +37,16 @@ export const deleteEmployee = (id) => {
     });
 };
 
+export const deleteMultiEmployee = (ids) => {
+    return axios({
+        method: 'delete',
+        url: `${API}/employee`,
+        data:{
+        	ids
+        }
+    });
+};
+
 export const getSettings = () => {
     return axios.get(`${API}/settings`);
 };
