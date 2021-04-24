@@ -24,13 +24,14 @@ class EmployeeList extends React.Component {
         let html = [];
 
         html = this.state.employee_list.map((a, key) => {
-            return ( <React.Fragment>
-                <tr>
-                    <td key = { `${key}_1` }> { a.id } </td>
-                    <td key = { `${key}_2` }> { a.name } </td>
-                    <td key = { `${key}_3` }> { a.designation } </td>
-                </tr>
-            </React.Fragment>)
+            return (
+                <tr key = { `${key}` }>
+                    <td> { a.id } </td>
+                    <td> { a.first_name } </td>
+                    <td> { a.last_name } </td>
+                    <td> { a.designation } </td>
+                    <td> <a href={`employees/${a.id}`}>Edit</a> </td>
+                </tr>)
         })
 
         return html;
@@ -40,9 +41,14 @@ class EmployeeList extends React.Component {
         return( <table className="table">
           <thead>
             <tr>
+              <th colSpan="5">Employee List</th>
+            </tr>
+            <tr>
               <th>#</th>
-              <th>Name</th>
+              <th>First Name</th>
+              <th>Last Name</th>
               <th>Designation</th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody>

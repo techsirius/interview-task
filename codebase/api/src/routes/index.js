@@ -10,7 +10,8 @@ module.exports = (app) => {
     // })
 
     app.get('/employee/list', employee.list);
-    app.post('/employee/create', employee.create);
+    // app.get('/employee', employee.fetch);
+    app.post('/employee', employee.create);
     // app.put('/employee/update', employee.update);
     app.delete('/employee/delete', employee.delete);
 

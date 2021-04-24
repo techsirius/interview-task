@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import Dashboard from './components/dashboard/index';
 import EmployeeCreate from './components/employees/create';
+import EmployeeEdit from './components/employees/edit';
 import Setting from './components/settings/index';
 // import reportWebVitals from './reportWebVitals';
 
@@ -19,8 +20,9 @@ ReactDOM.render(
 	    <Router>
 		    <Switch>
 			    <Route exact path = { `/dashboard` } component = { Dashboard } /> 
-			    <Route exact path = { `/employees/create` } component = { EmployeeCreate } /> 
-			    <Route exact path = { `/settings` } component = { Setting } /> 
+			    <Route exact path = { `/employees/create` } component = { EmployeeCreate } />
+			    <Route exact path = { `/employees/:employee_id` } component = { EmployeeEdit } />
+			    <Route exact path = { `/settings` } component = { Setting } />
 		    </Switch>
 	    </Router>
     </React.StrictMode>,

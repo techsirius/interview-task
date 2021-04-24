@@ -14,7 +14,11 @@ module.exports = {
 
         try {
 
-            const data = await Employee(sequelize, DataTypes).findAll();
+            const data = await Employee(sequelize, DataTypes).findAll({
+                order: [
+                    ['id', 'desc']
+                ]
+            });
 
             res.status(201).send(data);
 

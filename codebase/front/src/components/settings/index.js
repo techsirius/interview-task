@@ -57,7 +57,7 @@ class Setting extends React.Component {
         return (
 
             <React.Fragment >
-                {this.state.loader==true?
+                {this.state.loader===true?
                 <Loader />:null
                 }
 
