@@ -1,19 +1,33 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 // import './index.css';
-import App from './components/App';
+import Dashboard from './components/dashboard/index';
+import EmployeeCreate from './components/employees/create';
 // import reportWebVitals from './reportWebVitals';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 // import $ from 'jquery';
 // import 'bootstrap/dist/js/bootstrap.bundle.min';
 
+// import { PUBLIC_DIRECTORY_PATH } from './config/index';
+
 ReactDOM.render( <
     React.StrictMode >
     <
-    App / >
+    Router >
     <
-    /React.StrictMode>,
+    Switch >
+    <
+    Route exact path = { `/dashboard` }
+    component = { Dashboard }
+    /> <
+    Route exact path = { `/employees/create` }
+    component = { EmployeeCreate }
+    /> < /
+    Switch > <
+    /Router> < /
+    React.StrictMode > ,
     document.getElementById('root')
 );
 

@@ -15,7 +15,8 @@ module.exports = (sequelize, DataTypes) => {
     };
     Employee.init({
         // id: DataTypes.BIGINT(20),
-        name: DataTypes.STRING(255),
+        first_name: DataTypes.STRING(255),
+        last_name: DataTypes.STRING(255),
         designation: DataTypes.STRING(255),
         joining_date: DataTypes.DATE(6),
         created_at: DataTypes.DATE(6),

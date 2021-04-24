@@ -1,10 +1,16 @@
 import React from 'react';
 
-import Employees from './employees';
+import EmployeeList from '../employees/index';
+import TopNav from '../top-nav';
 
 class Dashboard extends React.Component {
     render() {
-        return <Employees / > ;
+        return ( 
+        	<React.Fragment >
+	        	<TopNav />
+	            <EmployeeList />
+            </React.Fragment>
+        );
     }
 }
 

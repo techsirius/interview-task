@@ -1,5 +1,5 @@
 const employee = require('../controllers/employee');
-// const labController = require('../controllers/Lab');
+const profile = require('../controllers/profile');
 
 module.exports = (app) => {
 
@@ -13,6 +13,9 @@ module.exports = (app) => {
     app.post('/employee/create', employee.create);
     // app.put('/employee/update', employee.update);
     app.delete('/employee/delete', employee.delete);
+
+    app.get('/profile', profile.fetch);
+    app.put('/profile', profile.update);
 
     // app.get('/lab/test', labController.test);
 

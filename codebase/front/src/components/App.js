@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Dashboard from './dashboard/index';
+import TopNav from './top-nav';
 
 class App extends React.Component {
     componentDidMount() {
@@ -8,7 +9,12 @@ class App extends React.Component {
     }
 
     render() {
-        return <Dashboard / > ;
+        return ( 
+        	<React.Fragment>
+	            <TopNav />
+	            <Dashboard />
+            </React.Fragment>
+        );
     }
 }
 

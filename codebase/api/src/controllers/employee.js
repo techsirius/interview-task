@@ -10,7 +10,7 @@ const Employee = require('../models/employee');
 
 module.exports = {
 
-    async list(req, res, next) {
+    async list(req, res) {
 
         try {
 
@@ -30,7 +30,8 @@ module.exports = {
             let now = DateTime.now();
 
             let data = {
-                name: req.body.name,
+                first_name: req.body.first_name,
+                last_name: req.body.last_name,
                 designation: req.body.designation,
                 joining_date: now.toFormat("yyyy-LL-dd HH:mm:ss"),
                 created_at: now.toFormat("yyyy-LL-dd HH:mm:ss"),
@@ -57,7 +58,8 @@ module.exports = {
                 let now = DateTime.now();
 
                 let data = {
-                    name: req.body.name,
+                    first_name: req.body.first_name,
+                    last_name: req.body.last_name,
                     designation: req.body.designation,
                     joining_date: now.toFormat("yyyy-LL-dd HH:mm:ss"),
                     updated_at: now.toFormat("yyyy-LL-dd HH:mm:ss"),
