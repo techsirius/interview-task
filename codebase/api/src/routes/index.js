@@ -14,8 +14,8 @@ module.exports = (app) => {
     // app.put('/employee/update', employee.update);
     app.delete('/employee/delete', employee.delete);
 
-    app.get('/profile', profile.fetch);
-    app.put('/profile', profile.update);
+    app.get('/settings', profile.fetch);
+    app.put('/settings', profile.update);
 
     // app.get('/lab/test', labController.test);
 
