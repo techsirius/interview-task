@@ -1,12 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-// import './index.css';
+
 import Dashboard from './components/dashboard/index';
 import EmployeeCreate from './components/employees/create';
 import Setting from './components/settings/index';
 // import reportWebVitals from './reportWebVitals';
 
+import './style.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 // import $ from 'jquery';
 // import 'bootstrap/dist/js/bootstrap.bundle.min';

@@ -15,7 +15,7 @@ class TopNav extends React.Component {
                             <a className="nav-link" href={`/employees/create`}>Add Employee</a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href={`#`}>Settings</a>
+                            <a className="nav-link" href={`/settings`}>Settings</a>
                         </li>
 
                     </ul>

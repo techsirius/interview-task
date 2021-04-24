@@ -9,6 +9,10 @@ export const getSettings = () => {
     return axios.get(`${API}/settings`);
 };
 
-export const updateSettings = () => {
-    return axios.put(`${API}/settings`);
+export const updateSettings = (data) => {
+    return axios({
+	  method: 'put',
+	  url: `${API}/settings`,
+	  data
+	});
 };
