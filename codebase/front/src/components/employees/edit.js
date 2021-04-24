@@ -1,59 +1,96 @@
 import React from 'react';
-import { employee_list } from '../../services/common';
+import { getEmployee, updateEmployee } from '../../services/common';
 
 import TopNav from '../top-nav';
+import Loader from '../Loader';
 
 class EmployeeEdit extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            employee_list: []
+            employee: {
+                first_name: '',
+                last_name: '',
+                designation: '',
+            },
+            loader: false
         };
     }
 
     componentDidMount() {
-        employee_list().then((res) => {
-            let employee_list = res.data;
+
+        let employee_id = this.props.match.params.employee_id;
+        getEmployee(employee_id).then((res) => {
+            let employee = res.data;
 
             this.setState({
-                employee_list
+                employee
             });
+        });
+
+    }
+
+    tongleLoader = (status)=>{
+        let oldState = Object.assign({},this.state.loader);
+        oldState = status;
+        this.setState(currentState => ({loader: oldState}), () => {});
+    }
+    updateEmployee = (e)=>{
+        // e.preventDefault();
+        let data = {
+            id: this.state.employee.id,
+            first_name: this.state.employee.first_name,
+            last_name: this.state.employee.last_name,
+            designation: this.state.employee.designation,
+        };
+
+        this.tongleLoader(true);
+        updateEmployee(data).then((res) => {
+            setTimeout(()=>{
+                this.tongleLoader(false);
+
+                this.props.history.push('/dashboard');
+                
+            }, 2000);
         });
     }
 
-    employeeView = () => {
-        let html = [];
+    handleInput = (e, obj)=>{
 
-        html = this.state.employee_list.map((a, key) => {
-            return ( < div className = "list-group-item"
-                key = { key } > { a.name }, { a.designation }, { a.joining_date } < /div>)
-            })
-
-        return html;
+        let oldState = Object.assign({},this.state.employee);
+        
+        oldState[obj.name] = e.target.value
+        
+        this.setState(currentState => ({employee: oldState}), () => {});
     }
 
     render() {
         return (
 
             <React.Fragment >
+                {this.state.loader===true?
+                <Loader />:null
+                }
+
                 <TopNav />
                 
                 <form>
-                    <div className="form-group">
-                        <label for="exampleInputEmail1">Email address</label>
-                        <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" />
-                        <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
+                    <div className="form-row align-items-center">
+                        <div className="form-group">
+                            <label htmlFor="first_name">First Name</label>
+                            <input type="text" className="form-control" id="first_name" placeholder="First Name" onChange={(e)=>this.handleInput(e, {name:'first_name'})} value={this.state.employee.first_name} />
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="last_name">Last Name</label>
+                            <input type="text" className="form-control" id="last_name" placeholder="Last Name" onChange={(e)=>this.handleInput(e, {name:'last_name'})} value={this.state.employee.last_name} />
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="designation">Designation</label>
+                            <input type="text" className="form-control" id="designation" placeholder="Designation" onChange={(e)=>this.handleInput(e, {name:'designation'})} value={this.state.employee.designation} />
+                        </div>
+                        <button type="button" className="btn btn-primary" onClick={this.updateEmployee}>Add</button>
                     </div>
-                    <div className="form-group">
-                        <label for="exampleInputPassword1">Password</label>
-                        <input type="password" className="form-control" id="exampleInputPassword1" placeholder="Password" />
-                    </div>
-                    <div className="form-group form-check">
-                        <input type="checkbox" className="form-check-input" id="exampleCheck1" />
-                        <label className="form-check-label" for="exampleCheck1">Check me out</label>
-                    </div>
-                    <button type="submit" className="btn btn-primary">Submit</button>
                 </form>
 
             </React.Fragment>

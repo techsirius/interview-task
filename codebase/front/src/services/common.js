@@ -6,25 +6,25 @@ export const employee_list = () => {
 };
 
 export const getEmployee = (id) => {
-    return axios({
-	  method: 'get',
-	  url: `${API}/employee`,
-	  data: {
-	  	employee_id: id
-	  }
-	});
+    return axios.get(`${API}/employee`, {
+        params: { id }
+    });
 };
 
 export const addEmployee = (data) => {
     return axios({
-	  method: 'post',
-	  url: `${API}/employee`,
-	  data
-	});
+        method: 'post',
+        url: `${API}/employee`,
+        data
+    });
 };
 
-export const updateEmployee = () => {
-    return axios.put(`${API}/employee`);
+export const updateEmployee = (data) => {
+    return axios({
+        method: 'put',
+        url: `${API}/employee`,
+        data
+    });
 };
 
 export const getSettings = () => {
@@ -33,8 +33,8 @@ export const getSettings = () => {
 
 export const updateSettings = (data) => {
     return axios({
-	  method: 'put',
-	  url: `${API}/settings`,
-	  data
-	});
+        method: 'put',
+        url: `${API}/settings`,
+        data
+    });
 };

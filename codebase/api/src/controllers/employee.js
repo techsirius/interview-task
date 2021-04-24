@@ -29,6 +29,21 @@ module.exports = {
 
     },
 
+    async fetch(req, res) {
+
+        try {
+
+            const data = await Employee(sequelize, DataTypes).findByPk(req.query.id);
+
+            res.status(201).send(data);
+
+        } catch (e) {
+            console.log(e);
+            res.status(500).send(e);
+        }
+
+    },
+
     async create(req, res) {
         try {
             let now = DateTime.now();
