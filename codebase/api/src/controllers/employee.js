@@ -10,7 +10,7 @@ const Employee = require('../models/employee');
 
 module.exports = {
 
-    async list(req, res) {
+    async list(req, res, next) {
 
         try {
 
