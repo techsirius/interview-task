@@ -27,6 +27,16 @@ export const updateEmployee = (data) => {
     });
 };
 
+export const deleteEmployee = (id) => {
+    return axios({
+        method: 'delete',
+        url: `${API}/employee`,
+        data:{
+        	id
+        }
+    });
+};
+
 export const getSettings = () => {
     return axios.get(`${API}/settings`);
 };

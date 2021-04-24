@@ -89,7 +89,7 @@ class EmployeeEdit extends React.Component {
                             <label htmlFor="designation">Designation</label>
                             <input type="text" className="form-control" id="designation" placeholder="Designation" onChange={(e)=>this.handleInput(e, {name:'designation'})} value={this.state.employee.designation} />
                         </div>
-                        <button type="button" className="btn btn-primary" onClick={this.updateEmployee}>Add</button>
+                        <button type="button" className="btn btn-primary" onClick={this.updateEmployee}>Update</button>
                     </div>
                 </form>
 
