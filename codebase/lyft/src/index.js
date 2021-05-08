@@ -1,12 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
+import './style.css';
+import Form from './components/form';
+import List from './components/list';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Router>
+	    <Switch>
+		    <Route exact path = { `/form` } component = { Form } /> 
+		    <Route exact path = { `/list` } component = { List } />
+		    <Route exact path="/" render={() => (
+			    <Redirect from="/" to={ `/form` } />
+			)}/>
+	    </Switch>
+    </Router>
   </React.StrictMode>,
   document.getElementById('root')
 );
@@ -14,4 +23,3 @@ ReactDOM.render(
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
