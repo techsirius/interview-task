@@ -1,6 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux';
 
+import {addUser} from '../actions/index';
+
 import Loader from './Loader';
 
 class UserForm extends React.Component {
@@ -29,16 +31,20 @@ class UserForm extends React.Component {
             code: this.state.form_data.code,
         };
 
+        this.props.addUser(data)
+
+        this.props.history.push('/list');
+
         // this.tongleLoader(true);
         // // updateSettings(data).then((res) => {
         //     setTimeout(()=>this.tongleLoader(false), 2000);
         // // });
 
-        let oldState = [...this.state.user_list];
-        oldState.push(data);
-        this.setState(currentState => ({user_list: oldState}), () => {
-            // console.log(this.state.user_list)
-        });
+        // let oldState = [...this.state.user_list];
+        // oldState.push(data);
+        // this.setState(currentState => ({user_list: oldState}), () => {
+        //     // console.log(this.state.user_list)
+        // });
     }
 
     handleInput = (e, obj)=>{
@@ -82,4 +88,12 @@ const mapStateToProps = state => {
   return { user_list: state.users };
 };
 
-export default connect(mapStateToProps)(UserForm);
+const mapDispatchToProps = dispatch => {
+  return {
+    addUser: (data) => {
+      dispatch(addUser( data ))
+    }
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(UserForm);
