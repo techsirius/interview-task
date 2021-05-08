@@ -1,20 +1,16 @@
 import React from 'react';
-// import { employee_list, deleteEmployee, deleteMultiEmployee } from '../../services/common';
+import { connect } from "react-redux";
 
-import Loader from './Loader';
+// import Loader from './Loader';
 
-class List extends React.Component {
-    constructor(props) {
-        super(props);
+class UserList extends React.Component {
+    // constructor(props) {
+    //     super(props);
 
-        this.state = {
-            user_list: [{
-                name: "Atul",
-                code: "007"
-            }],
-            loader: false,
-        };
-    }
+    //     this.state = {
+    //         loader: false,
+    //     };
+    // }
 
     tongleLoader = (status)=>{
         let oldState = Object.assign({},this.state.loader);
@@ -25,13 +21,14 @@ class List extends React.Component {
     userView = () => {
         let html = [];
 
-        html = this.state.user_list.map((a, key) => {
+        html = this.props.user_list.map((a, key) => {
             return (
                 <tr key = { `${key}` }>
                     <td> { key } </td>
                     <td> { a.name } </td>
                     <td> { a.code } </td>
-                </tr>)
+                </tr>
+            )
         })
 
         return html;
@@ -41,10 +38,7 @@ class List extends React.Component {
         return(
 
             <React.Fragment>
-                {this.state.loader===true?
-                <Loader />:null
-                }
-
+                
                 <table className="table">
                   <thead>
                     <tr>
@@ -60,9 +54,14 @@ class List extends React.Component {
                   { this.userView() }
                   </tbody>
                 </table>
+
             </React.Fragment>
         );
     }
 }
 
-export default List;
+const mapStateToProps = state => {
+  return { user_list: state.users };
+};
+
+export default connect(mapStateToProps)(UserList);

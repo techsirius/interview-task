@@ -1,27 +1,26 @@
 import React from 'react';
-// import { getSettings, updateSettings } from '../../services/common';
+import {connect} from 'react-redux';
 
 import Loader from './Loader';
 
-class Form extends React.Component {
+class UserForm extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            user_list: [],
             form_data: {
                 name: '',
                 code: ''
             },
-            // loader: false
+            loader: false
         };
     }
 
-    tongleLoader = (status)=>{
-        let oldState = Object.assign({},this.state.loader);
-        oldState = status;
-        this.setState(currentState => ({loader: oldState}), () => {});
-    }
+    // tongleLoader = (status)=>{
+    //     let oldState = Object.assign({},this.state.loader);
+    //     oldState = status;
+    //     this.setState(currentState => ({loader: oldState}), () => {});
+    // }
 
     updateUserList = (e)=>{
         // e.preventDefault();
@@ -79,4 +78,8 @@ class Form extends React.Component {
 
 }
 
-export default Form;
+const mapStateToProps = state => {
+  return { user_list: state.users };
+};
+
+export default connect(mapStateToProps)(UserForm);

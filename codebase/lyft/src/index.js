@@ -1,21 +1,25 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
+import { Provider } from "react-redux";
+import store from "./store/index";
 import './style.css';
 import Form from './components/form';
 import List from './components/list';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Router>
-	    <Switch>
-		    <Route exact path = { `/form` } component = { Form } /> 
-		    <Route exact path = { `/list` } component = { List } />
-		    <Route exact path="/" render={() => (
-			    <Redirect from="/" to={ `/form` } />
-			)}/>
-	    </Switch>
-    </Router>
+  	<Provider store={store}>
+	    <Router>
+		    <Switch>
+			    <Route exact path = { `/form` } component = { Form } /> 
+			    <Route exact path = { `/list` } component = { List } />
+			    <Route exact path="/" render={() => (
+				    <Redirect from="/" to={ `/form` } />
+				)}/>
+		    </Switch>
+	    </Router>
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );
