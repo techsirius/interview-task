@@ -3,8 +3,6 @@ import {connect} from 'react-redux';
 
 import {addUser} from '../actions/index';
 
-import Loader from './Loader';
-
 class UserForm extends React.Component {
     constructor(props) {
         super(props);
@@ -18,12 +16,6 @@ class UserForm extends React.Component {
         };
     }
 
-    // tongleLoader = (status)=>{
-    //     let oldState = Object.assign({},this.state.loader);
-    //     oldState = status;
-    //     this.setState(currentState => ({loader: oldState}), () => {});
-    // }
-
     updateUserList = (e)=>{
         // e.preventDefault();
         let data = {
@@ -34,17 +26,6 @@ class UserForm extends React.Component {
         this.props.addUser(data)
 
         this.props.history.push('/list');
-
-        // this.tongleLoader(true);
-        // // updateSettings(data).then((res) => {
-        //     setTimeout(()=>this.tongleLoader(false), 2000);
-        // // });
-
-        // let oldState = [...this.state.user_list];
-        // oldState.push(data);
-        // this.setState(currentState => ({user_list: oldState}), () => {
-        //     // console.log(this.state.user_list)
-        // });
     }
 
     handleInput = (e, obj)=>{
@@ -60,12 +41,9 @@ class UserForm extends React.Component {
         return (
 
             <React.Fragment >
-                {this.state.loader===true?
-                <Loader />:null
-                }
-                
-                <form>
-                    <div className="form-row align-items-center">
+                <div className="container">
+                    <h2>User Form</h2>
+                    <form>
                         <div className="form-group">
                             <label htmlFor="name">Name</label>
                             <input type="text" className="form-control" id="name" placeholder="Name" onChange={(e)=>this.handleInput(e, {name:'name'})} value={this.state.form_data.name} />
@@ -74,9 +52,10 @@ class UserForm extends React.Component {
                             <label htmlFor="code">Code</label>
                             <input type="text" className="form-control" id="code" placeholder="Code" onChange={(e)=>this.handleInput(e, {name:'code'})} value={this.state.form_data.code} />
                         </div>
-                        <button type="button" className="btn btn-primary" onClick={this.updateUserList}>Update</button>
-                    </div>
-                </form>
+
+                        <button type="button" className="btn btn-primary" onClick={this.updateUserList}>Submit</button>
+                    </form>
+                </div>
                 
             </React.Fragment>
         );

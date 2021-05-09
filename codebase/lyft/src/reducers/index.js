@@ -1,10 +1,7 @@
 import { ADD_USER } from "../constants/index";
 
 const initialState = {
-  	users: [{
-        name: "Atul",
-        code: "007"
-    }]
+  	users: []
 };
 
 function rootReducer(state = initialState, action) {

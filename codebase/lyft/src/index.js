@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
 import { Provider } from "react-redux";
+import 'bootstrap/dist/css/bootstrap.min.css';
 import store from "./store/index";
 import './style.css';
 import Form from './components/form';
