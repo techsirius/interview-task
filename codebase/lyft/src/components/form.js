@@ -1,7 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux';
 
-import {addUser} from '../actions/index';
+import { addUser } from '../actions/index';
+import { USER_CODES } from '../constants/index';
 
 class UserForm extends React.Component {
     constructor(props) {
@@ -17,15 +18,36 @@ class UserForm extends React.Component {
     }
 
     updateUserList = (e)=>{
+        let name = this.state.form_data.name;
+        let code = this.state.form_data.code;
+
+        let index_name = USER_CODES.findIndex((a)=>{
+            return (a.name === name);
+        });
+
+        let index_code = 0;
+
+        if(index_name !== -1){
+            let temp = USER_CODES[index_name];
+            index_code = (temp.code === null || temp.code === code)?0:-1;
+        }
+
         // e.preventDefault();
-        let data = {
-            name: this.state.form_data.name,
-            code: this.state.form_data.code,
-        };
 
-        this.props.addUser(data)
+        if(index_name === -1){
+            alert('Invalid user');
+        }
+        else if(index_code === -1){
+            alert('Invalid invitation code');
+        }
+        else{
+            this.props.addUser({
+                name,
+                code
+            })
 
-        this.props.history.push('/list');
+            this.props.history.push('/list');
+        }
     }
 
     handleInput = (e, obj)=>{
@@ -46,11 +68,11 @@ class UserForm extends React.Component {
                     <form>
                         <div className="form-group">
                             <label htmlFor="name">Name</label>
-                            <input type="text" className="form-control" id="name" placeholder="Name" onChange={(e)=>this.handleInput(e, {name:'name'})} value={this.state.form_data.name} />
+                            <input type="text" className="form-control" id="name" placeholder="Name" maxLength="20" onChange={(e)=>this.handleInput(e, {name:'name'})} value={this.state.form_data.name} />
                         </div>
                         <div className="form-group">
                             <label htmlFor="code">Code</label>
-                            <input type="text" className="form-control" id="code" placeholder="Code" onChange={(e)=>this.handleInput(e, {name:'code'})} value={this.state.form_data.code} />
+                            <input type="text" className="form-control" id="code" placeholder="Code" maxLength="20" onChange={(e)=>this.handleInput(e, {name:'code'})} value={this.state.form_data.code} />
                         </div>
 
                         <button type="button" className="btn btn-primary" onClick={this.updateUserList}>Submit</button>
