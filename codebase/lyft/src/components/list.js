@@ -6,16 +6,21 @@ class UserList extends React.Component {
 
     userView = () => {
         let html = [];
+        html.push(<tr key={-1}>
+                    <td colSpan="3" align="center"> No data to show </td>
+                </tr>);
 
-        html = this.props.user_list.map((a, key) => {
-            return (
-                <tr key = { `${key}` }>
-                    <td> { key + 1 } </td>
-                    <td> { a.name } </td>
-                    <td> { a.code } </td>
-                </tr>
-            )
-        })
+        if(this.props.user_list.length > 0){
+            html = this.props.user_list.map((a, key) => {
+                return (
+                    <tr key = { `${key}` }>
+                        <td> { key + 1 } </td>
+                        <td> { a.name } </td>
+                        <td> { a.code } </td>
+                    </tr>
+                )
+            })
+        }
 
         return html;
     }

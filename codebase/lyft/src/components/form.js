@@ -1,5 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import { Link } from 'react-router-dom';
 
 import { addUser } from '../actions/index';
 import { USER_CODES } from '../constants/index';
@@ -35,10 +36,10 @@ class UserForm extends React.Component {
         // e.preventDefault();
 
         if(index_name === -1){
-            alert('Invalid user');
+            alert('Invalid Name');
         }
         else if(index_code === -1){
-            alert('Invalid invitation code');
+            alert('Invalid Invitation Code');
         }
         else{
             this.props.addUser({
@@ -65,6 +66,9 @@ class UserForm extends React.Component {
             <React.Fragment >
                 <div className="container">
                     <h2>User Form</h2>
+                    <h2>
+                        <Link to="/list">User List</Link>
+                    </h2>
                     <form>
                         <div className="form-group">
                             <label htmlFor="name">Name</label>
