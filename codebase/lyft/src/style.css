@@ -207,5 +207,10 @@
     }
 }
 
-
 /* loader end */
+
+.form_center{
+    width: 500px;
+    margin: auto;
+    margin-top: -1%;
+}

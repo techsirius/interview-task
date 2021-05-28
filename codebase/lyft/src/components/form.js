@@ -65,22 +65,26 @@ class UserForm extends React.Component {
 
             <React.Fragment >
                 <div className="container">
-                    <h2>User Form</h2>
-                    <h2>
-                        <Link to="/list">User List</Link>
-                    </h2>
-                    <form>
-                        <div className="form-group">
-                            <label htmlFor="name">Name</label>
-                            <input type="text" className="form-control" id="name" placeholder="Name" maxLength="20" onChange={(e)=>this.handleInput(e, {name:'name'})} value={this.state.form_data.name} />
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="code">Code</label>
-                            <input type="text" className="form-control" id="code" placeholder="Code" maxLength="20" onChange={(e)=>this.handleInput(e, {name:'code'})} value={this.state.form_data.code} />
-                        </div>
+                    <div className="row">
+                        <div className="col-md-12">
+                            <h2>User Form</h2>
+                            <h2>
+                                <Link to="/list">User List</Link>
+                            </h2>
+                            <form>
+                                <div className="form-group">
+                                    <label htmlFor="name">Name</label>
+                                    <input type="text" className="form-control" id="name" placeholder="Name" maxLength="20" onChange={(e)=>this.handleInput(e, {name:'name'})} value={this.state.form_data.name} />
+                                </div>
+                                <div className="form-group">
+                                    <label htmlFor="code">Code</label>
+                                    <input type="text" className="form-control" id="code" placeholder="Code" maxLength="20" onChange={(e)=>this.handleInput(e, {name:'code'})} value={this.state.form_data.code} />
+                                </div>
 
-                        <button type="button" className="btn btn-primary" onClick={this.updateUserList}>Submit</button>
-                    </form>
+                                <button type="button" className="btn btn-primary" onClick={this.updateUserList}>Submit</button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
                 
             </React.Fragment>

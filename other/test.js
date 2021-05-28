@@ -115,4 +115,38 @@
 // let [a, b, ...rest] = arr;
 // console.log(a, b, rest);
 
+// let a = 10;
+// var b = 100;
+// console.log(global.b);
 
+// function x(){
+// for(var i=1;i<=5;i++){
+// 	function y(a){
+// 		setTimeout(function(){
+// 		console.log(a)
+// 		}, a*1000);
+// 	}
+// 	y(i);
+// }
+// }
+// x();
+
+// function counter(){
+//   var count = 0,cunt=8;
+  
+//   this.increase = function(){
+//     count++;
+//     console.log(count);
+//   };
+  
+//   this.decrease = function(){
+//     count--;
+//     console.log(count);
+//   };
+  
+// }
+
+// let counter1 = new counter();
+// counter1.increase()
+// counter1.increase()
+// counter1.decrease()
