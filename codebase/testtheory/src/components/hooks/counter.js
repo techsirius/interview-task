@@ -8,14 +8,13 @@ const Counter = () => {
 			count: 0,
 			color: 'blue'
 		};
-	});
 
 	const colors = ['red','green','blue','orange','yellow'];
 
 	const { count } = stateObj;
 
 	const incCount = () => {
-      setStateObj(( prevStateObj )=>{ 
+      setStateObj(( prevStateObj )=>{
       	return {
       		...prevStateObj,
       		count: prevStateObj.count + 1 ,
