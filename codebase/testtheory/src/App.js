@@ -7,7 +7,8 @@
 // import ClickCounter from './components/hoc/clickcounter';
 // import HoverCounter from './components/hoc/hovercounter';
 
-import HooksCounter from './components/hooks/counter';
+// import HooksCounter from './components/hooks/counter';
+import HooksCounter1 from './components/hooks/counter1';
 
 function App() {
   return (
@@ -29,7 +30,8 @@ function App() {
        {/* <ClickCounter />
        <HoverCounter /> */}
 
-       <HooksCounter />
+       {/* <HooksCounter /> */}
+       <HooksCounter1 />
 
     </>
   );
