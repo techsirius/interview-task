@@ -1,11 +1,13 @@
-import Uncontrolled from './components/uncontrolled';
+// import Uncontrolled from './components/uncontrolled';
 
 // import RenderProps from './wrappers/renderprops'; 
 // import Counter1 from './components/renderprops/counter1';
 // import Counter2 from './components/renderprops/counter2';
 
-import ClickCounter from './components/hoc/clickcounter';
-import HoverCounter from './components/hoc/hovercounter';
+// import ClickCounter from './components/hoc/clickcounter';
+// import HoverCounter from './components/hoc/hovercounter';
+
+import HooksCounter from './components/hooks/counter';
 
 function App() {
   return (
@@ -24,8 +26,10 @@ function App() {
 
        {/* <Uncontrolled /> */}
 
-       <ClickCounter />
-       <HoverCounter />
+       {/* <ClickCounter />
+       <HoverCounter /> */}
+
+       <HooksCounter />
 
     </>
   );
