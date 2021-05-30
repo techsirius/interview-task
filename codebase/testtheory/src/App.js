@@ -1,3 +1,5 @@
+import React, { useState } from 'react';
+
 // import Uncontrolled from './components/uncontrolled';
 
 // import RenderProps from './wrappers/renderprops'; 
@@ -11,30 +13,35 @@
 import HooksCounter1 from './components/hooks/counter1';
 
 function App() {
-  return (
-    <>
-    	{/*<RenderProps render={(count, incCount)=>{
-			return (
-				<Counter1 count={ count } incCount={ incCount } />
-			);
-		}} />
+	const [ display, setDisplay ] = useState(true);
 
-		<RenderProps render={(count, incCount)=>{
-			return (
-				<Counter2 count={ count } incCount={ incCount } />
-			);
-		}} /> */}
+    return (
+	    <>
+	    	{/*<RenderProps render={(count, incCount)=>{
+				return (
+					<Counter1 count={ count } incCount={ incCount } />
+				);
+			}} />
 
-       {/* <Uncontrolled /> */}
+			<RenderProps render={(count, incCount)=>{
+				return (
+					<Counter2 count={ count } incCount={ incCount } />
+				);
+			}} /> */}
 
-       {/* <ClickCounter />
-       <HoverCounter /> */}
+	       {/* <Uncontrolled /> */}
 
-       {/* <HooksCounter /> */}
-       <HooksCounter1 />
+	       {/* <ClickCounter />
+	       <HoverCounter /> */}
 
-    </>
-  );
+	       {/* <HooksCounter /> */}
+
+	       <button onClick={()=>{ setDisplay(!display) }}>Tongle</button>
+
+	       {display && <HooksCounter1 />}
+
+	    </>
+	);
 }
 
 export default App;
