@@ -10,7 +10,7 @@ import React, { useState } from 'react';
 // import HoverCounter from './components/hoc/hovercounter';
 
 // import HooksCounter from './components/hooks/counter';
-import HooksCounter1 from './components/hooks/counter1';
+import BtnContainer from './components/hooks/btncontainer';
 
 function App() {
 	const [ display, setDisplay ] = useState(true);
@@ -36,9 +36,7 @@ function App() {
 
 	       {/* <HooksCounter /> */}
 
-	       <button onClick={()=>{ setDisplay(!display) }}>Tongle</button>
-
-	       {display && <HooksCounter1 />}
+	       <BtnContainer />
 
 	    </>
 	);
