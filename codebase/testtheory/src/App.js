@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 // import Uncontrolled from './components/uncontrolled';
 
@@ -10,10 +10,11 @@ import React, { useState } from 'react';
 // import HoverCounter from './components/hoc/hovercounter';
 
 // import HooksCounter from './components/hooks/counter';
-import BtnContainer from './components/hooks/btncontainer';
+// import BtnContainer from './components/hooks/btncontainer';
+
+import Timer from './components/hooks/timer';
 
 function App() {
-	const [ display, setDisplay ] = useState(true);
 
     return (
 	    <>
@@ -36,7 +37,9 @@ function App() {
 
 	       {/* <HooksCounter /> */}
 
-	       <BtnContainer />
+	       {/* <BtnContainer /> */}
+
+	       <Timer />
 
 	    </>
 	);
