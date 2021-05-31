@@ -12,7 +12,8 @@ import React from 'react';
 // import HooksCounter from './components/hooks/counter';
 // import BtnContainer from './components/hooks/btncontainer';
 
-import Timer from './components/hooks/timer';
+// import Timer from './components/hooks/timer';
+import Anonymus from './components/hooks/anonymus';
 
 function App() {
 
@@ -39,7 +40,9 @@ function App() {
 
 	       {/* <BtnContainer /> */}
 
-	       <Timer />
+	       {/* <Timer /> */}
+
+	       <Anonymus />
 
 	    </>
 	);
