@@ -1,5 +1,7 @@
 import React from 'react';
 
+import './App.css';
+
 // import Uncontrolled from './components/uncontrolled';
 
 // import RenderProps from './wrappers/renderprops'; 
@@ -13,7 +15,9 @@ import React from 'react';
 // import BtnContainer from './components/hooks/btncontainer';
 
 // import Timer from './components/hooks/timer';
-import Anonymus from './components/hooks/anonymus';
+// import Anonymus from './components/hooks/anonymus';
+
+import ParentComp from './components/parent';
 
 function App() {
 
@@ -42,7 +46,9 @@ function App() {
 
 	       {/* <Timer /> */}
 
-	       <Anonymus />
+	       {/* <Anonymus /> */}
+
+	       <ParentComp />
 
 	    </>
 	);
